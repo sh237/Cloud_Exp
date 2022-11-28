@@ -23,10 +23,9 @@ class Display extends React.Component {
     
     render() {
         return(
-
         <div id="container">
              <div id="header"style={{"backgroundColor":"#707070","display":"flex"}}>
-                <div id="back-button" style={{"padding-top":"3%","padding-left":"2%","width":"10%"}}><Link to="/"><button>戻る</button></Link></div>
+                <div id="back-button" style={{"paddingTop":"3%","paddingLeft":"2%","width":"10%"}}><Link to="/"><button>戻る</button></Link></div>
                 <div id="title" style={{"width":"100%","height":"40%"}}><h1>{this.props.data.date}のデータ</h1> </div>
             </div>
             <div id="bottom">
@@ -46,9 +45,12 @@ class Display extends React.Component {
                         </tr>
                     </tbody>
                 </table>
+                <h2>{this.props.date}</h2> 
+                <p>{this.props.content}</p>
 
-            </div>
+                </div>
             <p>文章量:{this.props.data.text.length}/目安時間:{Math.floor(this.props.data.text.length/400)}分</p>
+            {/* <div dangerouslySetInnerHTML={{ __html:  this.text}} /> */}
         </div>
         );
     }
