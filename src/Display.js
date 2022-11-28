@@ -10,7 +10,7 @@ class Display extends React.Component {
     
     render() {
         return(
-            <div>
+            <div className="DisplayContent">
                 <h2>{this.props.date}</h2> 
                 <p>{this.props.content}</p>
             </div>
