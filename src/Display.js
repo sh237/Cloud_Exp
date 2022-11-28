@@ -5,22 +5,23 @@ class Display extends React.Component {
 
     constructor(props){
         super(props);
-        this.text="";
+        this.state={
+            text:""
+        }
     }
 
     componentDidMount() {
         console.log(this.props.data);
-        // this.text=this.props.data.text;
+        let text=this.props.data.text;
         console.log(this.props.data.text.length);
         this.props.data.wordList.map(word=>{
-            this.text=this.props.data.text.replace(new RegExp(word,'g'),`<span className="ImportantWord">${word}</span>`);
+            text=text.replace(new RegExp(word,'g'),`<span className="ImportantWord">${word}</span>`);
         });
-        console.log(this.text);
+        this.setState({text});
     }
     
     render() {
         return(
-
         <div id="container">
             <h1>{this.props.data.date}のデータ</h1> 
             <div id="bottom">
@@ -42,10 +43,9 @@ class Display extends React.Component {
                 </table>
                 <h2>{this.props.date}</h2> 
                 <p>{this.props.content}</p>
-
-                </div>
+            </div>
             <p>文章量:{this.props.data.text.length}/目安時間:{Math.floor(this.props.data.text.length/400)}分</p>
-            {/* <div dangerouslySetInnerHTML={{ __html:  this.text}} /> */}
+            <div dangerouslySetInnerHTML={{ __html: this.state.text }} />
         </div>
         );
     }
