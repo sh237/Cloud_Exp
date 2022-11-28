@@ -11,7 +11,7 @@ export const DataContext = React.createContext();
 
 
 function App() {
-  const [parentData, setParentData] = React.useState({"date":"2022-12-10","text":"I played tennis0"});
+  const [parentData, setParentData] = React.useState({"date":"2022-12-10","text":"I played tennis0","wordList":["tennis"]});
   const value = {
     parentData,
     setParentData,
