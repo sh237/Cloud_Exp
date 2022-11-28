@@ -19,6 +19,7 @@ class Display extends React.Component {
         return(
             <div className="DisplayContent">
                 <h2>{this.props.date}</h2> 
+                <p>文章量:{this.props.text.length}/目安時間:{int(this.props.text.length/400)}分</p>
                 <div dangerouslySetInnerHTML={{ __html:  this.text}} />
             </div>
         )
