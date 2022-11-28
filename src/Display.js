@@ -1,4 +1,5 @@
 import React from "react";
+import './App.css';
 
 class Display extends React.Component {
     constructor(props){
@@ -7,14 +8,14 @@ class Display extends React.Component {
         };
     }
     
- render() {
-    return(
-        <div>
-            <h2>{this.props.date}</h2> 
-            <p>{this.props.content}</p>
-        </div>
-    )
- }
+    render() {
+        return(
+            <div>
+                <h2>{this.props.date}</h2> 
+                <p>{this.props.content}</p>
+            </div>
+        )
+    }
 }
 
 export default Display;
