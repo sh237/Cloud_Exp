@@ -10,11 +10,19 @@ class Display extends React.Component {
         console.log(this.props.data);
     }
 
+    componentDidMount() {
+        this.text=this.props.text
+        this.props.wordList.map(word=>{
+            this.text=this.text.replace(new RegExp(word,'g'),`<span className="ImportantWord">${word}</span>`);
+        })
+    }
+    
     render() {
         return(
-            <div id="container">
-                <h1>{this.props.data["date"]}のデータ</h1> 
-                <div id="bottom">
+
+        <div id="container">
+            <h1>{this.props.data["date"]}のデータ</h1> 
+            <div id="bottom">
                 <table>
                     <thead>
                         <tr>
@@ -30,8 +38,13 @@ class Display extends React.Component {
                         </tr>
                     </tbody>
                 </table>
+                <h2>{this.props.date}</h2> 
+                <p>{this.props.content}</p>
+
                 </div>
-            </div>
+            <p>文章量:{this.props.text.length}/目安時間:{Math.floor(this.props.text.length/400)}分</p>
+            <div dangerouslySetInnerHTML={{ __html:  this.text}} />
+        </div>
         );
     }
 }
