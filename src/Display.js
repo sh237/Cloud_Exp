@@ -7,12 +7,19 @@ class Display extends React.Component {
         this.state={
         };
     }
+
+    componentDidMount(){
+        this.text=this.props.text
+        this.props.wordList.map(word=>{
+            this.text=this.text.replace(new RegExp(word,'g'),`<span className="ImportantWord">${word}</span>`);
+        })
+    }
     
     render() {
         return(
             <div className="DisplayContent">
                 <h2>{this.props.date}</h2> 
-                <p>{this.props.content}</p>
+                <div dangerouslySetInnerHTML={{ __html:  this.text}} />
             </div>
         )
     }
