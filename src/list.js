@@ -57,7 +57,7 @@ const List = () => {
                     <tr key={index} onClick={() => clickhandler(index)}>
                         <td>{item.date}</td>
                         <td>{item.text}</td>
-                        <td><Link to={"/display"} >詳細</Link></td>
+                        <td><Link to={"/display"} ><button>詳細</button></Link></td>
                     </tr>
                 ))}
             </tbody>
