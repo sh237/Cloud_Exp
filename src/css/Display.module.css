@@ -1,0 +1,29 @@
+h1{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 40px;
+    font-weight: 20;
+    color:rgb(235, 235, 235);
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0.5em;
+    background-color: #707070;
+}
+  
+#container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(236, 236, 236);
+}
+#bottom{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(236, 236, 236);
+}
