@@ -1,5 +1,5 @@
 import React from 'react'
-import  './css/list.module.css'
+import  './css/list.css'
 import axios from 'axios';
 import { BrowserRouter, Link, Route } from "react-router-dom";
 import { DataContext } from './App';
@@ -53,17 +53,17 @@ const List = () => {
                     })
             );
         }
-        console.log(filteredList);
+        // console.log(filteredList);
         // console.log(Array.isArray(filteredList));
       }, [searchKeyword]);
 
   return (
-    <div id="container">
-        <div id="header">
-            <h1>データ一覧</h1>
+    <div id="container_list">
+        <div id="header_list">
+            <h1 id="title-text-list">データ一覧</h1>
         </div>
-        <div>
-        <label htmlFor="search-keyword">Search</label>
+        <div id="search-container">
+        <label htmlFor="search-keyword" id="search-title">検索キーワード</label>
         <input
           id="search-keyword"
           type="text"
