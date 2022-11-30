@@ -70,3 +70,24 @@ table{
     padding: 30px;
     background-color:  rgb(236, 236, 236);
 }
+
+input::-webkit-input-placeholder {
+  font-family: "Kosugi Maru";
+  font-weight: bold;
+}
+input:-moz-placeholder {
+  font-family: "Kosugi Maru";
+  font-weight: bold;
+}
+input::-moz-placeholder {
+  font-family: "Kosugi Maru";
+  font-weight: bold;
+}
+input:-ms-input-placeholder {
+  font-family: "Kosugi Maru";
+  font-weight: bold;
+}
+input {
+  font-family: "Kosugi Maru";
+}
+

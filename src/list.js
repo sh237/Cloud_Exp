@@ -66,9 +66,9 @@ const List = () => {
         <label htmlFor="search-keyword" id="search-title">検索キーワード</label>
         <input
           id="search-keyword"
-          type="text"
+          type="search"
           onInput={onInput}
-          placeholder={"input search keyword"}
+          placeholder="キーワードを入力"
         />
       </div>
         <table>
