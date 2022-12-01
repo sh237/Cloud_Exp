@@ -63,7 +63,7 @@ const List = () => {
             <h1 id="title-text-list">データ一覧</h1>
         </div>
         <div id="search-container">
-        <label htmlFor="search-keyword" id="search-title">検索キーワード</label>
+        <label htmlFor="search-keyword" id="search-title">検索キーワード&nbsp;</label>
         <input
           id="search-keyword"
           type="search"
