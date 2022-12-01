@@ -90,4 +90,7 @@ input:-ms-input-placeholder {
 input {
   font-family: "Kosugi Maru";
 }
-
+#sort-container{
+  background-color: rgb(236, 236, 236);
+  width: 100%;
+}

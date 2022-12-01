@@ -4,6 +4,7 @@ import axios from 'axios';
 import { BrowserRouter, Link, Route } from "react-router-dom";
 import { DataContext } from './App';
 import escapeStringRegexp from "escape-string-regexp";
+import Button from './components/Button';
 
 const List = () => {
     const [data, setData] = React.useState([{"date":"2022-12-10","text":"I played tennis0","wordList":["tennis"]},{"date":"2022-12-11","text":"I played tennis1","wordList":["tennis"]},{"date":"2022-12-12","text":"I played tennis2","wordList":["tennis"]},{"date":"2022-12-13","text":"I played tennis3","wordList":["tennis"]},{"date":"2022-12-14","text":"I played tennis4","wordList":["tennis"]},{"date":"2022-12-15","text":"I played tennis5","wordList":["tennis"]},{"date":"2022-12-16","text":"I played tennis6","wordList":["tennis"]},{"date":"2022-12-17","text":"I played tennis7","wordList":["tennis"]},{"date":"2022-12-18","text":"I played tennis8","wordList":["tennis"]},{"date":"2022-12-19","text":"I played tennis9","wordList":["tennis"]},{"date":"2022-12-20","text":"I played tennis10","wordList":["tennis"]},{"date":"2022-12-21","text":"I played tennis11","wordList":["tennis"]},{"date":"2022-12-22","text":"I played tennis12","wordList":["tennis"]},{"date":"2022-12-23","text":"I played tennis13","wordList":["tennis"]},{"date":"2022-12-24","text":"I played tennis14","wordList":["tennis"]},{"date":"2022-12-25","text":"I played tennis15","wordList":["tennis"]},{"date":"2022-12-26","text":"I played tennis16","wordList":["tennis"]},{"date":"2022-12-27","text":"I played tennis17","wordList":["tennis"]},{"date":"2022-12-28","text":"I played tennis18","wordList":["tennis"]},{"date":"2022-12-29","text":"I played tennis19","wordList":["tennis"]},{"date":"2022-12-30","text":"I played tennis20","wordList":["tennis"]},{"date":"2022-12-31","text":"I played tennis21","wordList":["tennis"]}]);
@@ -11,6 +12,8 @@ const List = () => {
     const baseURL = 'https://api.jsonbin.io/b/60c9b8f5b8d3c466b8f1f1f5';
     const { parentData, setParentData } = React.useContext(DataContext);
     const [searchKeyword, updateSearchKeyword] = React.useState("");
+    const KEYS = ["日付", "文章"];
+    const [sort, setSort] = React.useState({});
     const onInput = (event) => {
         // 入力キーワードをstateに格納する
         updateSearchKeyword(event.currentTarget.value);
@@ -31,7 +34,43 @@ const List = () => {
             console.log(error);
             setIsLoading(false);
         })};
+
+    const handleSort = (key) => {
+        if (sort.key === key) {
+            setSort({ ...sort, order: -sort.order });
+        } else {
+            setSort({
+            key: key,
+            order: 1
+            })
+        }
+    };
+
+    let sortedList = React.useMemo(() => {
+        let _sortedList = filteredList;
+        let sort_key;
+        if(sort.key == "日付"){
+            sort_key = "date";
+        }else if(sort.key == "文章"){
+            sort_key = "text";
+        }
+        if (sort_key) {
+          _sortedList = _sortedList.sort((a, b) => {
+            a = a[sort_key];
+            b = b[sort_key];
+            switch(sort_key){
+                case "date":
+                    return a.localeCompare(b) * sort.order;
+                case "text":
+                    return (a.length - b.length) * sort.order;
+
+            }
+          });
+        }
+        return _sortedList;
+    }, [sort, filteredList]);
     
+
     const clickhandler = (index) => {
         console.log(data[index]);
         const data_ = data[index];
@@ -71,6 +110,16 @@ const List = () => {
           placeholder="キーワードを入力"
         />
       </div>
+      <div id="sort-container">
+        {
+        KEYS.map((key, index) => (
+            <Button
+            key={index}
+            button={key}
+            handleSort={handleSort}  />
+        ))
+        }
+        </div>
         <table>
             <thead>
                 <tr>
@@ -79,8 +128,8 @@ const List = () => {
                 </tr>
             </thead>
             <tbody>
-                {filteredList && filteredList.length > 0 && (
-                    filteredList.map((item, index) => (
+                {sortedList && sortedList.length > 0 && (
+                    sortedList.map((item, index) => (
                         <tr key={index} onClick={() => clickhandler(index)}>
                             <td>{item.date}</td>
                             <td>{item.text}</td>
