@@ -3,12 +3,13 @@ import './App.css';
 import React from 'react';
 import List from './list';
 import Display from './Display';
+import axios from 'axios';
 
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 
 
 export const DataContext = React.createContext();
-
+const baseURL="https://d9l2z4qpg6.execute-api.us-east-1.amazonaws.com/reactapp/"
 
 function App() {
   const [parentData, setParentData] = React.useState({"date":"2022-12-10","text":"I played tennis0","wordList":["tennis"]});
@@ -16,6 +17,14 @@ function App() {
     parentData,
     setParentData,
   };
+
+
+  // React.useEffect(() => {
+  //   console.log(1);
+  //   axios.get(baseURL).then((response) => {
+  //     console.log(response.data)
+  //   });
+  // }, []);
 
   return (
     <DataContext.Provider value={value}>
