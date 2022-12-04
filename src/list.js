@@ -20,26 +20,6 @@ const List = () => {
       };
     const [filteredList, setFilteredList] = React.useState([]);
 
-    const loadData = (e) => {
-        //e.preventDefault();
-        setIsLoading(true);
-        axios.get(
-            baseURL
-        )
-        .then((res) => {
-            let datas=[]
-            res.data.map(_data=>{
-                datas.push(JSON.parse(_data));
-            });
-            setData(datas);
-            setIsLoading(false);
-            console.log(data);
-        })
-        .catch(error => {
-            console.log(error);
-            setIsLoading(false);
-        })};
-
     const handleSort = (key) => {
         if (sort.key === key) {
             setSort({ ...sort, order: -sort.order });
@@ -81,9 +61,31 @@ const List = () => {
         setParentData(data_);
     }
 
+    React.useEffect(()=>{
+        const loadData = async (e) => {
+            e && e.preventDefault();
+            setIsLoading(true);
+            await axios.get(
+                baseURL
+            )
+            .then((res) => {
+                const datas=[]
+                res.data.map(_data=>{
+                    datas.push(JSON.parse(_data));
+                });
+                setData(datas);
+                console.log(datas);
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.log(error);
+                setIsLoading(false);
+            })};
+        loadData();
+    },[]);
+
     React.useEffect(() => {
         console.log('useEffect');
-        loadData();
         if (data){
             console.log('data set');
             setFilteredList(

@@ -3,7 +3,6 @@ import './App.css';
 import React from 'react';
 import List from './list';
 import Display from './Display';
-import axios from 'axios';
 
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 
@@ -17,14 +16,6 @@ function App() {
     parentData,
     setParentData,
   };
-
-
-  // React.useEffect(() => {
-  //   console.log(1);
-  //   axios.get(baseURL).then((response) => {
-  //     console.log(response.data)
-  //   });
-  // }, []);
 
   return (
     <DataContext.Provider value={value}>
