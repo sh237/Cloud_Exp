@@ -27,19 +27,19 @@ const List = () => {
             baseURL
         )
         .then((res) => {
-            console.log(res.data);
             let datas=[]
             res.data.map(_data=>{
                 datas.push(JSON.parse(_data));
             });
             setData(datas);
             setIsLoading(false);
+            console.log(data);
         })
         .catch(error => {
             console.log(error);
             setIsLoading(false);
         })};
-    //loadData();
+
     const handleSort = (key) => {
         if (sort.key === key) {
             setSort({ ...sort, order: -sort.order });
@@ -83,6 +83,7 @@ const List = () => {
 
     React.useEffect(() => {
         console.log('useEffect');
+        loadData();
         if (data){
             console.log('data set');
             setFilteredList(
