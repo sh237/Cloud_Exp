@@ -15,7 +15,7 @@ class Display extends React.Component {
     componentDidMount() {
         console.log(this.props.data);
         let text=this.props.data.text;
-        console.log(this.props.data.text.length);
+        console.log("wordlist",this.props.data.wordList);
         this.props.data.wordList.map(word=>{
             text=text.replace(new RegExp(word,'g'),`<span className="ImportantWord">${word}</span>`);
         });
@@ -78,10 +78,10 @@ class Display extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr id="table-row">
                             <td>{this.props.data.date}</td>
                             <td><div dangerouslySetInnerHTML={{ __html:  this.state.text}} /></td>
-                            <td>{this.state.summary}</td>
+                            <td id="summary">{this.state.summary}</td>
                         </tr>
                     </tbody>
                 </table>

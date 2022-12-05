@@ -8,6 +8,7 @@
     padding:30px;
 }
 #header{
+    width:110%;
     background-color:#707070;
     display:flex;
     flex-direction: row; 
@@ -19,6 +20,7 @@
 
 th{
     font-family: "Kosugi Maru", Tahoma, Geneva, Verdana, sans-serif;
+
 }
 td{
     font-family: "Kosugi Maru", Tahoma, Geneva, Verdana, sans-serif;
@@ -38,7 +40,7 @@ td{
 
   
 #container{
-    width: 100%;
+    width: 95%;
     height: 100%;
     background-color: rgb(236, 236, 236);
 }
@@ -62,4 +64,18 @@ p{
 }
 span{
     color: #ff2f2f;
+}
+#summary{
+    display:inline;
+    justify-self: flex-start;
+    align-self: start;
+    right:100px;
+    padding-right:100px;
+
+
+}
+#table-row{
+    margin-right:100px;
+    right:100px;
+    padding:100px;
 }
