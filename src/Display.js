@@ -54,7 +54,7 @@ class Display extends React.Component {
         texts_.map((content,i)=>{
             if (imList[i]>=median){
                 console.log("#",summary);
-                summary=summary+content;
+                summary=summary+content+"。";
             }
         });
         this.setState({summary});
