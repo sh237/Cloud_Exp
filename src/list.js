@@ -58,6 +58,12 @@ const List = () => {
         console.log("parent set",data[index]);
         setParentData(data[index]);
     }
+    function sleep(waitMsec) {
+        var startMsec = new Date();
+       
+        // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+        while (new Date() - startMsec < waitMsec);
+      }
 
     React.useEffect(()=>{
         const loadData = async (e) => {
@@ -73,7 +79,9 @@ const List = () => {
                 });
                 setData(datas);
                 console.log(datas);
-                setIsLoading(false);
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, 1500);
             })
             .catch(error => {
                 console.log(error);
@@ -81,6 +89,7 @@ const List = () => {
             })};
         loadData();
     },[]);
+
 
     React.useEffect(() => {
         console.log('useEffect');
