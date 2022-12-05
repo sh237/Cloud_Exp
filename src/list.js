@@ -48,7 +48,6 @@ const List = () => {
                     return a.localeCompare(b) * sort.order;
                 case "text":
                     return (a.length - b.length) * sort.order;
-
             }
           });
         }
@@ -56,9 +55,8 @@ const List = () => {
     }, [sort, filteredList]);
 
     const clickhandler = (index) => {
-        console.log(data[index]);
-        const data_ = data[index];
-        setParentData(data_);
+        console.log("parent set",data[index]);
+        setParentData(data[index]);
     }
 
     React.useEffect(()=>{
@@ -87,17 +85,23 @@ const List = () => {
     React.useEffect(() => {
         console.log('useEffect');
         if (data){
-            console.log('data set');
-            setFilteredList(
-                data.filter((item) => {
-                    // ユーザー入力を安全に正規表現にする（このときすべて小文字化で正規化する）
-                    const escapedText = escapeStringRegexp(searchKeyword.toLowerCase());
-                    // 小文字で比較して部分一致するものだけを残す
-                    return new RegExp(escapedText).test(item.text.toLowerCase());
-                    })
-            );
+            let temp_data = data.map( list => ({'date': list.date, 'text': list.text}));
+            temp_data = temp_data.filter((item,index) => {
+                // ユーザー入力を安全に正規表現にする（このときすべて小文字化で正規化する）
+                const escapedText = escapeStringRegexp(searchKeyword.toLowerCase());
+                // 小文字で比較して部分一致するものだけを残す
+                return new RegExp(escapedText).test(item.text.toLowerCase());
+                });
+            temp_data.map((item,index) => {
+                item.text = item.text.slice(0,30);
+            });
+            console.log("temp_data",temp_data);
+
+            setFilteredList(temp_data);
+            console.log(data);
+            console.log("filteredList set");
         }
-      }, [searchKeyword,data]);
+      }, [searchKeyword, data]);
 
   return (
     <div id="container_list">
