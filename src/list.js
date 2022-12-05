@@ -97,7 +97,7 @@ const List = () => {
                     })
             );
         }
-      }, [searchKeyword]);
+      }, [searchKeyword,data]);
 
   return (
     <div id="container_list">
