@@ -94,23 +94,26 @@ const List = () => {
 
 
     React.useEffect(() => {
-        console.log('useEffect');
-        if (data){
-            let temp_data = data.map( list => ({'date': list.date, 'text': list.text}));
-            temp_data = temp_data.filter((item,index) => {
-                // ユーザー入力を安全に正規表現にする（このときすべて小文字化で正規化する）
-                const escapedText = escapeStringRegexp(searchKeyword.toLowerCase());
-                // 小文字で比較して部分一致するものだけを残す
-                return new RegExp(escapedText).test(item.text.toLowerCase());
+        // 入力キーワードが変更されたらフィルタリング
+        if (data){ // データがある場合
+            let temp_data = data.map( list => (
+                {'date': list.date, 'text': list.text})
+            );
+            // 入力キーワードでフィルタリング
+            temp_data = temp_data.filter((item,index) => {  
+                // 入力キーワードを正規表現に変換
+                const escapedText = escapeStringRegexp(
+                    searchKeyword.toLowerCase()
+                );
+                // 入力キーワードを含むデータを抽出
+                return new RegExp(escapedText).test(
+                    item.text.toLowerCase()
+                    );
                 });
-            temp_data.map((item,index) => {
+            temp_data.map((item,index) => { // 文字列を切り取る
                 item.text = item.text.slice(0,30);
             });
-            console.log("temp_data",temp_data);
-
             setFilteredList(temp_data);
-            console.log(data);
-            console.log("filteredList set");
         }
       }, [searchKeyword, data]);
 
