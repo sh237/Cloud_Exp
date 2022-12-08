@@ -31,22 +31,24 @@ const List = () => {
         }
     };
 
+    //　データを並び替える
     let sortedList = React.useMemo(() => {
-        let _sortedList = filteredList;
-        let sort_key;
-        if(sort.key == "日付"){
+        let _sortedList = filteredList; // 並び替え対象のリスト
+        let sort_key; // 並び替え対象のキー
+        if(sort.key == "日付"){ // ソートキーによって並び替え対象のキーを変更
             sort_key = "date";
         }else if(sort.key == "文章"){
             sort_key = "text";
         }
-        if (sort_key) {
-          _sortedList = _sortedList.sort((a, b) => {
-            a = a[sort_key];
+        if (sort_key) { // ソートキーがあれば並び替え
+           // sortメソッドで並び替え
+          _sortedList = _sortedList.sort((a, b) => { 
+            a = a[sort_key]; 
             b = b[sort_key];
-            switch(sort_key){
-                case "date":
+            switch(sort_key){ // ソートキーによって並び替え方法を変更
+                case "date": // 日付の場合は文字列として比較
                     return a.localeCompare(b) * sort.order;
-                case "text":
+                case "text": // 文字列の場合は文字列長として比較
                     return (a.length - b.length) * sort.order;
             }
           });
